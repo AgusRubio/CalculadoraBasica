@@ -18,41 +18,45 @@ namespace CalculadoraBasica
         {
             try
             {
-                string operando = operador.Text;
-                int num1 = int.Parse(operador1.Text);
-                int num2 = int.Parse(operador2.Text);
+                string operador = OperadorTextBox.Text;
+                int num1 = int.Parse(Operando1TextBox.Text);
+                int num2 = int.Parse(Operando2TextBox.Text);
                 int total = 0;
 
-                switch (operando)
+                switch (operador)
                 {
                     case "+":
                         total = num1 + num2;
-                        resultado.Text = total.ToString();
+                        ResultadoTextBox.Text = total.ToString();
                         break;
                     case "-":
                         total = num1 - num2;
-                        resultado.Text = total.ToString();
+                        ResultadoTextBox.Text = total.ToString();
                         break;
                     case "*":
                         total = num1 * num2;
-                        resultado.Text = total.ToString();
+                        ResultadoTextBox.Text = total.ToString();
                         break;
                     case "/":
                         total = num1 / num2;
-                        resultado.Text = total.ToString();
+                        ResultadoTextBox.Text = total.ToString();
                         break;
                 }
             }
             catch(Exception)
             {
-                MessageBox.Show("Se ha producido un error. Revisa los operandos");
+                MessageBox.Show("Se ha producido un error. Revisa los operandos", "Calculadora básica", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                Operando1TextBox.Clear();
+                Operando2TextBox.Clear();
+                OperadorTextBox.Clear();
+                ResultadoTextBox.Clear();
             }
             
         }
 
-        private void cambio(object sender, TextChangedEventArgs e)
+        private void ComprobarOperadorCorrecto(object sender, TextChangedEventArgs e)
         {
-            string operando = operador.Text;
+            string operando = OperadorTextBox.Text;
 
             switch (operando)
             {
@@ -76,10 +80,10 @@ namespace CalculadoraBasica
 
         private void Limpiar_Click(object sender, RoutedEventArgs e)
         {
-            operador1.Clear();
-            operador2.Clear();
-            operador.Clear();
-            resultado.Clear();
+            Operando1TextBox.Clear();
+            Operando2TextBox.Clear();
+            OperadorTextBox.Clear();
+            ResultadoTextBox.Clear();
         }        
     }
 }
